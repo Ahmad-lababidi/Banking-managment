@@ -1,0 +1,11 @@
+    Age: Represents the age of the person
+    Annual_Income: Represents the annual income of the person
+    Monthly_Inhand_Salary: Represents the monthly base salary of a person
+    Interest_Rate: Represents the interest rate on credit card
+    Credit_Mix: Represents the classification of the mix of credits
+    Outstanding_Debt: Represents the remaining debt to be paid (in USD)
+    Credit_Utilization_Ratio: Represents the utilization ratio of credit card
+    Payment_of_Min_Amount: Represents whether only the minimum amount was paid by the person
+    Total_EMI_per_month: Represents the monthly EMI payments (in USD)
+    Monthly_Balance: Represents the monthly balance amount of the customer (in USD)
+    Credit_Score: Represents the bracket of credit score (Poor, Standard, Good)

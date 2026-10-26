@@ -1,0 +1,7 @@
+.git
+.idea
+__pycache__
+*.py[cod]
+*.zip
+logs/*.log
+model/artifacts/*

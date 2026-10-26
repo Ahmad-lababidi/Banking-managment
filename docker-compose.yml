@@ -1,0 +1,42 @@
+services:
+  trainer:
+    build:
+      context: .
+      dockerfile: backend/Dockerfile
+    command: ["sh", "-c", "if [ ! -f /app/model/artifacts/models.joblib ]; then python -m model.train_model; fi"]
+    volumes:
+      - model-artifacts:/app/model/artifacts
+      - project-logs:/app/logs
+
+  backend:
+    build:
+      context: .
+      dockerfile: backend/Dockerfile
+    environment:
+      MODEL_DIR: /app/model/artifacts
+      CLEANED_DIR: /app/cleaned_data
+      LOG_DIR: /app/logs
+    volumes:
+      - model-artifacts:/app/model/artifacts
+      - ./model/cleaned_data:/app/cleaned_data
+      - project-logs:/app/logs
+    ports:
+      - "8000:8000"
+    depends_on:
+      trainer:
+        condition: service_completed_successfully
+
+  frontend:
+    build:
+      context: .
+      dockerfile: frontend/Dockerfile
+    environment:
+      API_BASE_URL: http://backend:8000
+    ports:
+      - "8501:8501"
+    depends_on:
+      - backend
+
+volumes:
+  model-artifacts:
+  project-logs:
